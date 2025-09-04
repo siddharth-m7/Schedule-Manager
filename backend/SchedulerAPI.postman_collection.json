@@ -1,0 +1,114 @@
+{
+  "info": {
+    "name": "Scheduler with Recurring Slots",
+    "_postman_id": "12345678-90ab-cdef-1234-567890abcdef",
+    "description": "Postman collection for testing scheduler backend APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Recurring Slots",
+      "item": [
+        {
+          "name": "Create Recurring Slot",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"day_of_week\": 1,\n  \"start_time\": \"09:00:00\",\n  \"end_time\": \"11:00:00\"\n}"
+            },
+            "url": { "raw": "http://localhost:4000/slots", "host": ["localhost"], "port": "4000", "path": ["slots"] }
+          }
+        },
+        {
+          "name": "Get All Recurring Slots",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:4000/slots", "host": ["localhost"], "port": "4000", "path": ["slots"] }
+          }
+        },
+        {
+          "name": "Update Recurring Slot",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start_time\": \"10:00:00\",\n  \"end_time\": \"12:00:00\"\n}"
+            },
+            "url": { "raw": "http://localhost:4000/slots/1", "host": ["localhost"], "port": "4000", "path": ["slots", "1"] }
+          }
+        },
+        {
+          "name": "Delete Recurring Slot",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "http://localhost:4000/slots/1", "host": ["localhost"], "port": "4000", "path": ["slots", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Slot Exceptions",
+      "item": [
+        {
+          "name": "Create Slot Exception",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recurring_slot_id\": 1,\n  \"date\": \"2025-09-05\",\n  \"start_time\": \"14:00:00\",\n  \"end_time\": \"16:00:00\"\n}"
+            },
+            "url": { "raw": "http://localhost:4000/slots/exceptions", "host": ["localhost"], "port": "4000", "path": ["slots", "exceptions"] }
+          }
+        },
+        {
+          "name": "Get All Exceptions",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:4000/slots/exceptions", "host": ["localhost"], "port": "4000", "path": ["slots", "exceptions"] }
+          }
+        },
+        {
+          "name": "Update Exception",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_deleted\": true\n}"
+            },
+            "url": { "raw": "http://localhost:4000/slots/exceptions/1", "host": ["localhost"], "port": "4000", "path": ["slots", "exceptions", "1"] }
+          }
+        },
+        {
+          "name": "Delete Exception",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "http://localhost:4000/slots/exceptions/1", "host": ["localhost"], "port": "4000", "path": ["slots", "exceptions", "1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Weekly Schedule",
+      "item": [
+        {
+          "name": "Get Week Schedule",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:4000/week?start_date=2025-09-03",
+              "host": ["localhost"],
+              "port": "4000",
+              "path": ["week"],
+              "query": [{ "key": "start_date", "value": "2025-09-03" }]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
