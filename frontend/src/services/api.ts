@@ -1,6 +1,6 @@
 import { RecurringSlot, WeekSchedule, CreateSlotData, UpdateSlotData, SlotException, CreateExceptionData } from '../types'
 
-const BASE_URL = 'http://localhost:4000'
+const BASE_URL = import.meta.env.VITE_BASE_URL || 'http://localhost:4000/'
 
 class ApiService {
   private async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
