@@ -1,40 +1,31 @@
-import type { Knex } from "knex";
-import dotenv from "dotenv";
+// knexfile.js
+require("dotenv").config();
 
-dotenv.config();
-
-const databaseUrl = process.env.DATABASE_URL;
-if (!databaseUrl) {
-  throw new Error("DATABASE_URL environment variable is not set.");
-}
-
-const config: { [key: string]: Knex.Config } = {
+module.exports = {
   development: {
     client: "pg",
-    connection: databaseUrl,
+    connection: {
+      host: "127.0.0.1",
+      user: "postgres",
+      password: "mypassword",
+      database: "mydb"
+    },
     migrations: {
-      directory: "./src/migrations",
-      extension: "cjs",
+      directory: "./migrations"
     },
     seeds: {
-      directory: "./src/seeds",
-    },
+      directory: "./seeds"
+    }
   },
 
   production: {
     client: "pg",
-    connection: {
-      connectionString: databaseUrl,
-      ssl: { rejectUnauthorized: false }, // required for Render
-    },
+    connection: process.env.DATABASE_URL,
     migrations: {
-      directory: "./src/migrations",
-      extension: "cjs",
+      directory: "./migrations"
     },
     seeds: {
-      directory: "./src/seeds",
-    },
-  },
+      directory: "./seeds"
+    }
+  }
 };
-
-export default config;
