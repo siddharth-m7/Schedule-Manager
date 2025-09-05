@@ -3,7 +3,6 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
   throw new Error("DATABASE_URL environment variable is not set.");
@@ -15,7 +14,22 @@ const config: { [key: string]: Knex.Config } = {
     connection: databaseUrl,
     migrations: {
       directory: "./src/migrations",
-      extension: "cjs", // because migrations are CommonJS
+      extension: "cjs",
+    },
+    seeds: {
+      directory: "./src/seeds",
+    },
+  },
+
+  production: {
+    client: "pg",
+    connection: {
+      connectionString: databaseUrl,
+      ssl: { rejectUnauthorized: false }, // required for Render
+    },
+    migrations: {
+      directory: "./src/migrations",
+      extension: "cjs",
     },
     seeds: {
       directory: "./src/seeds",
