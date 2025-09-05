@@ -10,8 +10,7 @@
     "target": "ES2020",
 
     /* Node Environment */
-    "lib": ["ES2020"],
-    "types": ["node"],             // 👈 includes Node.js globals like process
+    "lib": ["ES2020"],     
 
     /* Outputs */
     "sourceMap": true,
@@ -31,6 +30,6 @@
     "isolatedModules": true,
     "moduleDetection": "force"
   },
-  "include": ["src", "knexfile.ts"],   // 👈 important so Render compiles knexfile.ts too
+  "include": ["src", "knexfile.ts", "globals.d.ts"],   // 👈 important so Render compiles knexfile.ts too
   "exclude": ["node_modules", "dist"]
 }
